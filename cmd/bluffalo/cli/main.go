@@ -1,49 +1,31 @@
-/*
-This cli package would live in the bluffalo application.
-*/
 package cli
 
 import (
 	"context"
+	"path"
 
-	"github.com/markbates/bluffalo"
-	"github.com/markbates/bluffalo/internal/goth"
-	"github.com/markbates/bluffalo/internal/heroku"
-	"github.com/markbates/bluffalo/internal/plush"
-	"github.com/markbates/bluffalo/internal/pop"
+	"github.com/gobuffalo/here"
+	"github.com/markbates/jim"
 )
 
-// Main is the entry point for the bluffalo application
-// this is what will be called by main.go
-// It would be used by tools like `bluffalo dev` and
-// `bluffalo build`.
 func Main(ctx context.Context, args []string) error {
-	// app := actions.App()
-	// if err := app.Serve(); err != nil {
-	// 		return err
-	// }
-	return nil
-}
-
-// Bluffalo is the entry point for the `bluffalo` binary.
-// It allows for registering plugins to enhance the `bluffalo` binary.
-// 	bluffalo generate -h
-// 	bluffalo generate pop ...
-// 	bluffalo fix
-// 	bluffalo fix plush ...
-// 	bluffalo fix -h
-func Bluffalo(ctx context.Context, args []string) error {
-	b, err := bluffalo.New(ctx)
+	her, err := here.Dir(".")
 	if err != nil {
 		return err
 	}
 
-	b.Plugins = append(b.Plugins,
-		pop.New(),
-		goth.New(),
-		heroku.New(),
-		plush.New(),
-	)
+	ci, err := here.Package(path.Join(her.ImportPath, "cli"))
+	if err != nil {
+		return err
+	}
 
-	return b.Main(ctx, args)
+	t := &jim.Task{
+		Info: ci,
+		Args: args,
+		Pkg:  ci.ImportPath,
+		Sel:  ci.Name,
+		Name: "Bluffalo",
+	}
+
+	return jim.Run(ctx, t)
 }

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/markbates/bluffalo/internal/cmdx"
+	"github.com/markbates/bluffalo/fauxplugs/cmdx"
 )
 
 // Plugin is the most basic interface a plugin can implement.

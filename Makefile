@@ -1,2 +1,2 @@
-install:
-	go install ./cmd/bluffalo
+demo:
+	./demo.sh

@@ -1,17 +1,9 @@
-# bluff
+# Bluffalo
 
-[![](https://github.com/markbates/bluff/workflows/Tests/badge.svg)](https://github.com/markbates/bluff/actions)
-[![GoDoc](https://godoc.org/github.com/markbates/bluff?status.svg)](https://godoc.org/github.com/markbates/bluff)
+Proof of concept around [https://github.com/gobuffalo/buffalo/issues/1791](https://github.com/gobuffalo/buffalo/issues/1791).
 
-### Requirements
-
-* Go 1.13+
-* Go Modules
-
-### Installation
+## Usage
 
 ```bash
-$ go get github.com/markbates/bluff/cmd/bluff
+$ ./demo.sh
 ```
-
----

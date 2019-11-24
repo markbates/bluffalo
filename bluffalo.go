@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/markbates/bluffalo/internal/cmdx"
+	"github.com/markbates/bluffalo/fauxplugs/cmdx"
 )
 
 // Bluffalo represents the `bluffalo` cli.
